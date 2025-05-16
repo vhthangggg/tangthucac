@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tàng Thư Các - Kho sách đặc sắc về Nhân Tính, Tình Cảm, Thương Trường và Ngộ Đạo. Khám phá tri thức qua những kỳ thư dị điển.">
+    <meta name="keywords" content="sách, nhân tính, ngộ đạo, thương chiến, tình cảm, đọc sách">
+    <meta property="og:title" content="Tàng Thư Các - Kỳ thư dị điển">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
+    <title>Tàng Thư Các - Kỳ thư dị điển</title>
+</head>
+
+<body>
+    <div id="starfield-sky"></div>
+    <div class="simple-notification" id="simple-notification" aria-live="polite"></div>
+
+    <header class="site-header-new">
+        <div class="container header-container-new">
+            <div class="logo-area">
+                <a href="#trang-chu" class="nav-link" data-section="trang-chu">
+                    <img src="img/placeholder.jpg" alt="Tàng Thư Các Logo" class="logo-img">
+                    <span class="site-title-new">Tàng Thư Các</span>
+                </a>
+                <p class="site-tagline-new">Kỳ thư dị điển</p>
+            </div>
+
+            <nav class="main-navigation-new" aria-label="Main navigation">
+                <button class="mobile-nav-toggle" aria-label="Mở menu" aria-expanded="false" aria-controls="primary-menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="primary-menu-new" id="primary-menu">
+                    <li><a href="#trang-chu" data-section="trang-chu" class="nav-link active"><i class="fas fa-home"></i> Trang Chủ</a></li>
+                    <li class="has-submenu-new">
+                        <a href="#the-loai" data-section="the-loai" class="nav-link" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-list"></i> Thể Loại <i class="fas fa-chevron-down submenu-arrow"></i>
+                        </a>
+                        <ul class="submenu-new">
+                            <li><a href="#nhan-tinh" data-category="nhan-tinh" class="nav-link"><i class="fas fa-book"></i> Nhân Tính <span class="category-count"></span></a></li>
+                            <li><a href="#tinh-cam" data-category="tinh-cam" class="nav-link"><i class="fas fa-book"></i> Tình Cảm <span class="category-count"></span></a></li>
+                            <li><a href="#thuong-chien" data-category="thuong-chien" class="nav-link"><i class="fas fa-book"></i> Thương Chiến <span class="category-count"></span></a></li>
+                            <li><a href="#ngo-dao" data-category="ngo-dao" class="nav-link"><i class="fas fa-book"></i> Ngộ Đạo <span class="category-count"></span></a></li>
+                            <li><a href="#bai-viet-tianya" data-category="bai-viet-tianya" class="nav-link"><i class="fas fa-book"></i> Bài Viết Tianya <span class="category-count"></span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#yeu-thich" data-section="yeu-thich" class="nav-link"><i class="fas fa-heart"></i> Yêu Thích <span id="favorite-count"></span></a></li>
+                    <li class="mobile-only"><a href="#lich-su-mua-hang" data-section="lich-su-mua-hang" class="nav-link"><i class="fas fa-history"></i> Lịch Sử</a></li>
+                    <li><a href="#lien-he" data-section="lien-he" class="nav-link"><i class="fas fa-envelope"></i> Liên Hệ</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions-new">
+                <div class="search-container-new">
+                    <input type="search" id="search-box" placeholder="Tìm kiếm..." aria-label="Tìm kiếm sách">
+                    <button id="search-button" aria-label="Tìm kiếm"><i class="fas fa-search"></i></button>
+                    <ul id="search-suggestions"></ul>
+                </div>
+                <div id="user-info-new" class="interactive-van-xu" onclick="showCustomNotification('Tính năng Văn Xu đang phát triển.')" role="button" aria-label="Thông tin Văn Xu và Hạng">
+                    <span id="user-rank" role="status" class="rank-hoc-gia-to-mo">
+                        <i class="fas fa-shield-alt" aria-hidden="true"></i> <span class="rank-text">Học Giả</span>
+                    </span>
+                    <span id="user-van-xu" role="status">
+                        <span class="van-xu-value">0</span> <i class="fas fa-coins" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="theme-toggle-new">
+                    <button id="theme-toggle-button" aria-label="Chuyển đổi chế độ sáng/tối">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </div>
+                <div class="auth-actions-new">
+                    <button id="login-button-nav" class="btn btn-primary" data-section="login-form-section"><i class="fas fa-sign-in-alt"></i> Đăng Nhập</button>
+                    <div id="user-dropdown-new" class="user-dropdown-new" style="display: none;">
+                        <button id="user-avatar-button" aria-label="Menu người dùng" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i>
+                        </button>
+                        <ul class="dropdown-menu-new">
+                            <li><a href="#lich-su-mua-hang" data-section="lich-su-mua-hang" class="nav-link"><i class="fas fa-history"></i> Lịch Sử</a></li>
+                            <li><button id="logout-button-nav"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" role="main" class="main-content-new">
+        <!-- Các section .content-section giữ nguyên cấu trúc bên trong,
+             chỉ có id="main-content" được thêm class "main-content-new"
+             để điều chỉnh padding-top cho phù hợp với header mới -->
+        <div class="loading-overlay">
+            <div class="loading-spinner"></div>
+        </div>
+
+        <section id="trang-chu" class="content-section active">
+            <h2 class="visually-hidden">Trang chủ</h2>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/xuyenthaunhantinh" target="_blank" class="icon icon-facebook" aria-label="Facebook của Tàng Thư Các">
+                    <i class="fab fa-facebook-f"></i> <!--Sửa thành -f cho hợp chuẩn-->
+                </a>
+                <a href="https://www.tiktok.com/@xuyenthaunhantinhh" target="_blank" class="icon icon-tiktok" aria-label="Tiktok của Tàng Thư Các">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="https://www.youtube.com/@ngodaonhantinh" target="_blank" class="icon icon-youtube" aria-label="Youtube của Tàng Thư Các">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+
+            <section id="new-books" aria-labelledby="new-books-heading">
+                <h2 id="new-books-heading">Sách Mới</h2>
+                <div class="new-books-carousel" role="region" aria-roledescription="carousel" aria-label="Sách mới">
+                    <div class="new-books-inner" role="list"></div>
+                </div>
+            </section>
+
+            <section id="featured-books" aria-labelledby="featured-books-heading">
+                <h2 id="featured-books-heading">Sách Nổi Bật</h2>
+                <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Sách nổi bật">
+                    <!-- Items sẽ được thêm bởi JavaScript -->
+                </div>
+            </section>
+
+            <section id="all-books" aria-labelledby="all-books-heading">
+                <h2 id="all-books-heading">Toàn Bộ Sách</h2>
+                <div class="book-container" id="book-container"></div>
+                <nav class="pagination" aria-label="Phân trang sách"></nav>
+            </section>
+        </section>
+
+        <section id="the-loai" class="content-section">
+            <h2 id="category-title">Thể loại</h2>
+            <div id="nhan-tinh" class="category-section">
+                <h3>Nhân Tính - Minh Tâm Kiến Tính</h3>
+                <div class="book-container" id="nhan-tinh-container"></div>
+                <nav class="pagination" aria-label="Phân trang sách Nhân Tính"></nav>
+            </div>
+            <div id="tinh-cam" class="category-section">
+                <h3>Tình Cảm - Tâm Tình Duyên Hợp</h3>
+                <div class="book-container" id="tinh-cam-container"></div>
+                <nav class="pagination" aria-label="Phân trang sách Tình Cảm"></nav>
+            </div>
+            <div id="thuong-chien" class="category-section">
+                <h3>Thương Chiến - Mưu Lược Thương Trường</h3>
+                <div class="book-container" id="thuong-chien-container"></div>
+                <nav class="pagination" aria-label="Phân trang sách Thương Chiến"></nav>
+            </div>
+            <div id="ngo-dao" class="category-section">
+                <h3>Ngộ Đạo - Khai Ngộ Chân Tâm</h3>
+                <div class="book-container" id="ngo-dao-container"></div>
+                <nav class="pagination" aria-label="Phân trang sách Ngộ Đạo"></nav>
+            </div>
+            <div id="bai-viet-tianya" class="category-section">
+                <h3>Bài Viết Tianya</h3>
+                <div class="book-container" id="bai-viet-tianya-container"></div>
+                <nav class="pagination" aria-label="Phân trang Bài Viết Tianya"></nav>
+            </div>
+        </section>
+
+        <section id="login-form-section" class="content-section auth-section">
+            <div class="form-container-new glassmorphism">
+                <h1 class="form-title">Chào Mừng Trở Lại!</h1>
+                <p class="form-subtitle">Nhập thông tin đăng nhập để truy cập tài khoản</p>
+                <form id="loginForm" method="post">
+                    <div class="input-group">
+                        <label for="email" class="input-label">Email</label>
+                        <input type="email" class="form-input" id="email" name="email" required>
+                        <span id="email-error" class="error-message" role="alert"></span>
+                    </div>
+                    <div class="input-group password-input-group">
+                        <label for="password" class="input-label">Mật khẩu</label>
+                        <input type="password" class="form-input" id="password" name="password" required minlength="6">
+                        <button type="button" class="password-toggle-button" aria-label="Hiển thị mật khẩu">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <span id="password-error" class="error-message" role="alert"></span>
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me-container">
+                            <input type="checkbox" id="remember-me" name="remember-me">
+                            <label for="remember-me">Ghi nhớ tôi</label>
+                        </div>
+                        <a href="#" class="forgot-password-link" onclick="showCustomNotification('Tính năng Quên mật khẩu đang phát triển.', 'info'); return false;">Quên mật khẩu?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full-width">Đăng Nhập</button>
+                </form>
+                <div class="social-login-divider">Hoặc tiếp tục với</div>
+                <div class="social-buttons">
+                    <button class="social-button google" aria-label="Đăng nhập bằng Google" onclick="showCustomNotification('Đăng nhập Google đang phát triển.', 'info')"><i class="fab fa-google"></i> Google</button>
+                    <button class="social-button facebook" aria-label="Đăng nhập bằng Facebook" onclick="showCustomNotification('Đăng nhập Facebook đang phát triển.', 'info')"><i class="fab fa-facebook-f"></i> Facebook</button>
+                </div>
+                <div class="form-footer">Chưa có tài khoản? <a href="#" class="link" onclick="showCustomNotification('Chức năng đăng ký đang phát triển. Bạn có thể dùng email và mật khẩu bất kỳ để đăng nhập thử nghiệm.', 'info'); return false;">Đăng ký ngay</a></div>
+            </div>
+        </section>
+
+        <!-- Các section còn lại: yeu-thich, lich-su-mua-hang, lien-he, book-details giữ nguyên nội dung bên trong -->
+        <!-- Ví dụ: -->
+        <section id="yeu-thich" class="content-section">
+            <h2>Sách Yêu Thích</h2>
+            <div class="book-container" id="yeu-thich-container">
+                <!-- Sách yêu thích sẽ được JS chèn vào đây -->
+            </div>
+            <p id="empty-favorites" style="display:none;">Bạn chưa có sách yêu thích nào.</p>
+        </section>
+
+        <section id="lich-su-mua-hang" class="content-section">
+            <h2>Lịch Sử Giao Dịch</h2>
+            <div class="table-responsive">
+                 <table id="purchase-history-table"> <!-- Đổi ID purchase-history-container thành purchase-history-table -->
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên Sách</th>
+                            <th>Ngày Giao Dịch</th>
+                            <th>Giá</th>
+                            <th>Trạng Thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <p id="empty-purchase-history" style="display:none;">Bạn chưa có giao dịch nào.</p>
+        </section>
+
+        <section id="lien-he" class="content-section">
+            <h2>Liên Hệ Với Chúng Tôi</h2>
+            <p>Nếu bạn có bất kỳ câu hỏi hoặc góp ý nào, đừng ngần ngại liên hệ với Tàng Thư Các:</p>
+            <ul class="contact-info-list">
+                <li><i class="fas fa-envelope"></i> Email: <a href="mailto:hotro@tangthucac.store">hotro@tangthucac.store</a></li>
+                <li><i class="fas fa-map-marker-alt"></i> Địa chỉ: <span>Đang cập nhật...</span></li>
+                <li><i class="fas fa-phone"></i> Điện thoại: <span>Đang cập nhật...</span></li>
+            </ul>
+            <p>Chúng tôi luôn sẵn lòng lắng nghe và hỗ trợ bạn!</p>
+        </section>
+
+        <section id="book-details" class="content-section">
+            <div class="book-details-content">
+                <button id="close-book-details-button" aria-label="Đóng thông tin sách">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="book-cover">
+                    <img id="book-details-cover" src="img/placeholder.jpg" alt="Bìa sách">
+                    <div class="ratings" id="book-details-rating">
+                        <!-- Stars generated by JS -->
+                    </div>
+                    <p id="book-details-publication-date" class="book-publication-date">Năm xuất bản: ...</p>
+                </div>
+                <div class="book-info">
+                    <h2 id="book-details-title" data-book-id="">Tên Sách</h2>
+                    <p id="book-details-author"><i class="fas fa-user-edit"></i> Tác giả: <span class="info-value">...</span></p>
+                    <p id="book-details-publisher"><i class="fas fa-building"></i> NXB: <span class="info-value">...</span></p>
+                    <p id="book-details-price"><i class="fas fa-dollar-sign"></i> Giá: <span class="info-value">...</span></p>
+
+                    <div class="book-actions">
+                        <button class="btn btn-primary purchase-button" data-book-id="">
+                            <i class="fas fa-book"></i> Thỉnh thư
+                        </button>
+                        <button class="btn btn-secondary read-button" data-book-id="">
+                            <i class="fas fa-eye"></i> Đọc thử
+                        </button>
+                        <button class="btn btn-icon add-to-cart-button" data-book-id="" aria-label="Thêm vào giỏ hàng">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="btn btn-icon favorite-button" data-book-id="" aria-label="Thêm vào yêu thích">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                     <div class="book-description-container">
+                        <h3><i class="fas fa-info-circle"></i> Mô Tả Chi Tiết</h3>
+                        <p id="book-details-description" class="info-value">...</p>
+                    </div>
+
+                    <div class="comments-section">
+                        <h3><i class="fas fa-comments"></i> Bình Luận</h3>
+                        <div id="book-details-comments-list">
+                            <!-- Comments generated by JS -->
+                        </div>
+                        <div class="comment-form">
+                            <textarea id="book-details-comment-box" placeholder="Viết bình luận của bạn..." aria-label="Nội dung bình luận"></textarea>
+                            <button id="book-details-comment-submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Gửi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <button id="scrollToTop" class="scroll-to-top-button" aria-label="Cuộn lên đầu trang" style="display: none;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Popups: Giữ nguyên cấu trúc HTML của các popup nhưng sẽ có style chung -->
+    <div id="payment-popup-overlay" class="popup-overlay" style="display: none;">
+        <div id="payment-popup" class="popup-content glassmorphism">
+            <button class="popup-close-button" id="payment-popup-close-icon" aria-label="Đóng cửa sổ thanh toán">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Hướng dẫn Thanh toán Thỉnh Thư</h2>
+            <div class="account-info">
+                <p>Ngân hàng: MBBANK</p>
+                <p>Số tài khoản: <span class="account-number">NGODAO000</span></p>
+            </div>
+            <div class="qr-code">
+                <img src="img/qrthanhtoan.png" alt="Mã QR Thanh toán">
+            </div>
+            <div class="payment-instructions">
+                <p>Vui lòng nhập gmail của bạn và sao chép nội dung bên dưới vào phần nội dung chuyển khoản:</p>
+                <div id="payment-content-template" class="code-block">{BooksID:[book-id]} [your-gmail]</div>
+                <input type="email" id="reader-gmail" class="form-input" placeholder="Nhập Gmail của bạn (ví dụ: user@example.com)" aria-label="Gmail người nhận sách">
+            </div>
+            <div class="popup-actions">
+                <button id="copy-payment-content-button" class="btn btn-primary"><i class="fas fa-copy"></i> Sao chép Nội dung</button>
+                <button id="close-payment-popup" class="btn btn-secondary">Đóng</button>
+            </div>
+            <p class="note">Sau khi thanh toán thành công, vui lòng chờ trong giây lát để hệ thống xác nhận và kích hoạt sách.</p>
+        </div>
+    </div>
+
+    <div id="ve-chung-toi-popup-overlay" class="popup-overlay" style="display: none;">
+        <div id="ve-chung-toi-popup" class="popup-content glassmorphism letter-popup">
+            <button class="popup-close-button" id="close-ve-chung-toi-popup" aria-label="Đóng cửa sổ về chúng tôi">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="letter-content">
+                <h2>Tàng Thư Các - Lời Tự Bạch</h2>
+                <p>Tàng Thư Các. Nay khai lập Tàng Thư Các, không vì danh lợi, chỉ mong lưu giữ di sản tri thức tiền nhân. Kỳ thư dị điển, tinh tuyển muôn phương, tề tựu nơi đây, chờ đợi người hiểu đạo.</p>
+                <p>Nhân tính vô thường, tình cảm hữu hạn, thương chiến biến ảo, ngộ đạo vĩnh hằng - Tàng Thư Các ghi chép chân thực, không thêm không bớt.</p>
+                <p>Hỡi nhân sinh, vạn vật, hãy tạm dừng chân nơi Tàng Thư Các, chiêm nghiệm lẽ đời, tĩnh lặng tìm chân tâm. Tàng Thư Các - lời tự bạch của tri thức.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="newsletter-notification-popup-overlay" class="popup-overlay" style="display: none;">
+        <div id="newsletter-notification-popup" class="popup-content glassmorphism">
+            <button class="popup-close-button" id="close-newsletter-popup-icon" aria-label="Đóng thông báo đăng ký nhận tin">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Đăng Ký Nhận Tin</h2>
+            <p>Tính năng đăng ký nhận bản tin qua email hiện đang được phát triển.</p>
+            <p>Để nhận được những tin tức mới nhất và hỗ trợ, vui lòng liên hệ qua email: <a href="mailto:hotro@tangthucac.store" class="link">hotro@tangthucac.store</a></p>
+            <div class="popup-actions">
+                <button id="close-newsletter-popup-button" class="btn btn-primary">Đã hiểu</button>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="site-footer-new">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-section about-us">
+                    <h3 class="footer-title"><i class="fas fa-book-open"></i> Về Chúng Tôi</h3>
+                    <p>"Tri thức là sức mạnh, minh triết là đạo". Tàng Thư Các được lập ra để lưu giữ di sản tri thức... <a href="#" id="xem-them-ve-chung-toi-footer" class="link">Xem thêm</a></p>
+                </div>
+                <div class="footer-section quick-links">
+                    <h3 class="footer-title"><i class="fas fa-link"></i> Liên Kết Nhanh</h3>
+                    <ul>
+                        <li><a href="#trang-chu" class="nav-link" data-section="trang-chu"><i class="fas fa-home"></i> Trang Chủ</a></li>
+                        <li><a href="#the-loai" class="nav-link" data-section="the-loai"><i class="fas fa-list"></i> Thể Loại</a></li>
+                        <li><a href="#lien-he" class="nav-link" data-section="lien-he"><i class="fas fa-envelope"></i> Liên Hệ</a></li>
+                        <li><a href="#lich-su-mua-hang" data-section="lich-su-mua-hang" class="nav-link"><i class="fas fa-history"></i> Lịch Sử</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section newsletter">
+                    <h3 class="footer-title"><i class="fas fa-envelope-open-text"></i> Đăng Ký Nhận Tin</h3>
+                    <p>Nhận thông tin sách mới và ưu đãi đặc biệt.</p>
+                    <form id="newsletter-form" onsubmit="event.preventDefault(); showCustomNotification('Đăng ký nhận tin đang phát triển.', 'info');">
+                        <input type="email" placeholder="Nhập email của bạn..." required aria-label="Email để nhận bản tin">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+                 <div class="footer-section social-media">
+                    <h3 class="footer-title"><i class="fas fa-users"></i> Theo Dõi Chúng Tôi</h3>
+                    <div class="social-icons-footer">
+                        <a href="https://www.facebook.com/xuyenthaunhantinh" target="_blank" class="icon icon-facebook" aria-label="Facebook Tàng Thư Các"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.tiktok.com/@xuyenthaunhantinhh" target="_blank" class="icon icon-tiktok" aria-label="Tiktok Tàng Thư Các"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com/@ngodaonhantinh" target="_blank" class="icon icon-youtube" aria-label="Youtube Tàng Thư Các"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="current-year">2024</span> Tàng Thư Các - Tri thư, đạt lễ, sáng tâm, tịch đạo.</p>
+                <nav class="footer-legal-links">
+                    <a href="#" onclick="showCustomNotification('Chính sách bảo mật đang cập nhật.', 'info'); return false;" class="link">Chính Sách Bảo Mật</a>
+                    <span class="separator">|</span>
+                    <a href="#" onclick="showCustomNotification('Điều khoản dịch vụ đang cập nhật.', 'info'); return false;" class="link">Điều Khoản Dịch Vụ</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
