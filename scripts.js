@@ -411,7 +411,7 @@ async function loadBooks() {
     try {
         showLoading();
         const timestamp = new Date().getTime();
-        const response = await fetch(`data/books.json?t=${timestamp}`);
+        const response = await fetch(`books.json?t=${timestamp}`);
         if (!response.ok) throw new Error('Network response was not ok.');
         books = await response.json();
         if (!Array.isArray(books)) throw new Error("Books data is not an array.");
